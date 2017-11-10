@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>VueJs+SPA</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse bg-primary">
+		<ul class="navul">
+		  <li><a id="navInsert" onclick="navInsert()" class="active" href="#">Insert</a></li>
+		  <li><a id="navUpdate" onclick="navUpdate()" href="#">Update</a></li>
+		  <li><a id="navDelete" onclick="navDelete()" href="#">Delete</a></li>
+		  <li><a id="navList"   onclick="navList()"   href="#">List</a></li>
+		</ul>
+		</nav>
+		<div id="todo-list-example">
+			<div class="container" id="insertId">
+				<form>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">{{ msgInfCod }}</label>
+						<div   class="col-sm-10">
+							<input v-model="codigoText" class="form-control" placeholder="Informe um Código">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">{{ msgInfNom }}</label>
+						<div   class="col-sm-10">
+							<input v-model="nomeText" class="form-control" placeholder="Informe um Nome">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">{{ msgInfEnd }}</label>
+						<div   class="col-sm-10">
+							<input v-model="enderecoText" class="form-control" placeholder="Informe um Endereço">
+						</div>
+					</div>
+					<div class="form-group row">
+						<button type="button" class="btn btn-primary col-sm-12" v-on:click="inserirCliente">{{ msgBtnAdd }}</button>
+					</div>
+				</form>
+			</div>
+			<div class="container ocultar" id="list">
+				<table class="table table-striped col-sm-6 col-offset-sm-3">
+					<thead>
+						<tr>
+							<th>{{ msgCod }}</th>
+							<th>{{ msgNom }}</th>
+							<th>{{ msgEnd }}</th>
+							<th id="delete">{{msgRem}}</th>
+						</tr>
+					</thead>
+					<body>
+						<tr v-for="(todo, index) in todos"
+							v-bind:key="todo.id">
+							<td>
+		      					{{ todo.codigo }}
+				    		</td>
+							<td>
+	      						{{ todo.nome }}
+				    		</td>
+							<td>
+			      				{{ todo.endereco }}
+				    		</td>
+							<td class="delete2">
+									<span 	is="todo-item"
+											v-bind:key="todo.id"
+											v-on:remove="todos.splice(index, 1)">
+									</span>
+				    		</td>
+						</tr>
+					</body>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="assets/js/vue.js"></script>		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/funcao.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+</html>
